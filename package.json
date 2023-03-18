@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Hqhuy1411/t1#readme",
   "devDependencies": {
     "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.21"
   },

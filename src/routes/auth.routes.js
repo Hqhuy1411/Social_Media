@@ -2,7 +2,7 @@ const express = require('express')
 const User = require('../app/model/User')
 const router = express.Router()
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken')
 router.get('/', (req, res) => {
     res.send('Hello Auth')
 
@@ -41,8 +41,9 @@ router.post("/login",async (req,res)=>{
         if(validPassword== false){
             res.status(400).json("wrong password")
         }
-
-        res.status(200).json(user)
+        const accessToken = jwt.sign({ userId: user.id }, 'my_secret_key', { expiresIn: '1h' });
+        const asuer = {...user._doc,"token" : accessToken}
+        res.status(200).json(asuer)
     } catch (error) {
         res.status(500).json(error)
     }
